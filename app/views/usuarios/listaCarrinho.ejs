@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+
+<body>
+    <%- include('../../public/menuUsuario.html') %>
+        <h1>Carrinho</h1>
+
+        <table>
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th></th>
+            </tr>
+            <% for (let i=0; i < produtos.length; i++){%>
+                <tr>
+                    <td>
+                        <%= produtos[i]["produto"][0].descricao %>
+                    </td>
+                    <td> R$ <%= produtos[i]["produto"][0].preco %>
+                    </td>
+                    <td>
+                        <%= produtos[i].quantidade %>
+                    </td>
+                            <td>
+                                <form action="/editarCarrinho" method="post">
+                                    <input type="hidden" value="<%= produtos[i].quantidade %>" name="qtd">
+                                    <input type="hidden" value="<%= produtos[i].id_produto %>" name="idProduto">
+                                    <input type="hidden" value="<%= produtos[i].id_pedido %>" name="idPedido">
+                                    <input type="submit" value="Editar">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/excluirCarrinho" method="post">
+                                    <input type="hidden" value="<%= produtos[i].id_pedido %>" name="idPedido">
+                                    <input type="hidden" value="<%= produtos[i].id_produto %>" name="idProduto">
+                                    <input type="submit" value="Excluir">
+                                </form>
+                            </td>
+                </tr>
+                <% } %>
+        </table>
+        <h3>Valor total: R$ <%= valorTotal %></h3>
+        <form action="/finalizarPedido" method="post">
+            <input type="submit" value="Finalizar">
+        </form>
+</body>
+
+</html>

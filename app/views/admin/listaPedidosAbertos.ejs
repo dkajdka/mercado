@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+<body>
+    <%- include('../../public/menuAdmin.html') %>
+    <h1>Lista de pedidos em aberto</h1>
+
+    <table>
+        <tr>
+            <th>id pedido</th>
+            <th>nome do usuario</th>
+            <th>forma de pagamento</th>
+        </tr>
+        <% for (let i = 0; i < pedidos.length; i++){%>
+            <tr>
+                <td><%= pedidos[i].id_pedido %></td>
+                <td><%= pedidos[i].nome %></td>
+                <td><%= pedidos[i].descricao %></td>
+                <td><form action="/admin/concluirCompra" method="post">
+                    <input type="hidden" value=<%=pedidos[i].id_pedido%> name="id">
+                    <input type="submit" value="Finalizar">
+                </form></td>
+                <td><form action="/admin/cancelarCompra" method="post">
+                    <input type="hidden" value=<%=pedidos[i].id_pedido%> name="id">
+                    <input type="submit" value="Cancelar">
+                </form></td>
+            <%
+        }
+        %>
+    </table>
+</body>
+</html>

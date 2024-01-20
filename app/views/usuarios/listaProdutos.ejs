@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+<body>
+    <%- include('../../public/menuUsuario.html') %>
+    <h1>Lista de produtos</h1>
+
+    <table>
+        <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th></th>
+        </tr>
+        <% for (let i = 0; i < produtos.length; i++){%>
+            <tr>
+                <td><%= produtos[i].descricao %></td>
+                <td><%= produtos[i].preco %>R$</td>
+                <td><form action="/addCarrinho" method="post">
+                    <input type="hidden" value="<%= produtos[i].id_produto %>" name="idProduto">
+                    <input type="submit" value="Add">
+                </form></td>
+            </tr>
+            <%
+        } 
+        %>
+    </table>
+</body>
+</html>

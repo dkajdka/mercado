@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+<body>
+    <h1>Cadastro de usuario</h1>    
+    <% if (erros){%>
+        <ul>
+            <% for (let i =0; i <erros.length;i++) { %>
+                <li><%= erros[i].msg %></li>
+                <% }%>
+        </ul>
+    <%}%>
+
+    <form action="/admin/cadastrar" method="post">
+        <label>Nome</label>
+        <br>
+        <input type="text" name="nome" value="<%=usuario.nome%>">
+        <br>
+        <label>Email</label>
+        <br>
+        <input type="email" name="email" value="<%=usuario.email%>">
+        <br>
+        <label>Senha</label>
+        <br>
+        <input type="text" name="senha" value="<%=usuario.senha%>">
+        <br>
+        <label>Confirmar senha</label>
+        <br>
+        <input type="text" name="confirmarSenha" value="<%=usuario.confirmarSenha%>">
+        <br>
+        <label>Funcao</label>
+        <br>
+        <select name="id_tipo_usuario">
+            <option value="0">Selecione</option>
+            <% for(let i =0;i < tipos.length;i++){%>
+             <option value="<%= tipos[i].id_tipo_usuario %>"><%= tipos[i].descricao%></option>
+           <% } %>
+          </select>
+        <br><br>
+        <input type="submit" value="enviar">
+    </form>
+</body>
+</html>

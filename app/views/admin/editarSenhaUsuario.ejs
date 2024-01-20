@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+
+<body>
+    <h1>Editar senha do usuario</h1>
+
+
+    <% if (erros){%>
+        <ul>
+            <% for (let i=0; i <erros.length;i++) { %>
+                <li>
+                    <%= erros[i].msg %>
+                </li>
+                <% }%>
+        </ul>
+        <%}%>
+                <form action="/admin/salvarSenhaUsuario" method="post">
+                    <label>Nova senha</label>
+                    <br>
+                    <input type="text" name="senha" value="">
+                    <br>
+                    <label>Confirmar senha</label>
+                    <br>
+                    <input type="text" name="confirmarSenha" value="">
+                    <br>
+                    <br>
+                    <input type="hidden" value="<%= usuario[0].id_usuario%>" name="id">
+                    <input type="submit" value="enviar">
+                </form>
+</body>
+
+</html>

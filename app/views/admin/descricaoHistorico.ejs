@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+<body>
+    <%- include('../../public/menuAdmin.html') %>
+    <h1>Histórico de pedidos</h1>
+
+    <table>
+        <tr>
+            <th>id pedido</th>
+            <th>nome do usuario</th>
+            <th>forma de pagamento</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+        </tr>
+        <% for (let i = 0; i < descricaoHistorico.length; i++){%>
+            <tr>
+                <td><%= descricaoHistorico[i].id_pedido %></td>
+                <td><%= descricaoHistorico[i].nome %></td>
+                <td><%= descricaoHistorico[i].forma_pagamento %></td>
+                <td><%= descricaoHistorico[i].nome_produto %></td>
+                <td><%= descricaoHistorico[i].quantidade %></td>
+            <%
+        }
+        %>
+    </table>
+</body>
+</html>

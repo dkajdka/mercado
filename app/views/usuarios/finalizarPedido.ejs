@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+
+<body>
+    <%- include('../../public/menuUsuario.html') %>
+        <h1>Subtotal do carrinho</h1>
+        <table>
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+            </tr>
+            <% for (let i=0; i < produtos.length; i++){%>
+                <tr>
+                    <td>
+                        <%= produtos[i]["produto"][0].descricao %>
+                    </td>
+                    <td> R$ <%= produtos[i]["produto"][0].preco %>
+                    </td>
+                    <td>
+                        <%= produtos[i].quantidade %>
+                    </td>
+                    <% let qtd=produtos[i].quantidade 
+                    let preco=produtos[i]["produto"][0].preco 
+                    let total=qtd * preco %>
+                        <td>
+                            <%= total %>R$
+                        </td>
+                </tr>
+                <% } %>
+        </table>
+
+        <h3>Valor total: R$ <%= valorTotal %>
+</h3>
+        <form action="/validarPedido" method="post">
+            <select name="idFormaPagamento">
+                <%for (let i = 0; i < formaPagamento.length; i++) { %>
+                    <option value="<%=formaPagamento[i].id_forma_pagamento %>" name="idFormaPagamento"><%=formaPagamento[i].descricao%></option>
+                <% } %>
+                </select>
+                <br>
+                <br>
+            <input type="submit" value="Comprar">
+        </form>
+</body>
+
+</html>

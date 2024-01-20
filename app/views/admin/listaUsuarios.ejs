@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
+</head>
+<body>
+    <%- include('../../public/menuAdmin.html') %>
+    <h1>Lista de produtos</h1>
+
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        <% for (let i = 0; i < usuario.length; i++){%>
+            <tr>
+                <td><%= usuario[i].nome %></td>
+                <td><%= usuario[i].email %></td>
+                <td><form action="/admin/editarUsuario" method="post">
+                    <input type="hidden" value=<%=usuario[i].id_usuario%> name="id">
+                    <input type="submit" value="Edit">
+                </form></td>
+                <td><form action="/admin/editarSenhaUsuario" method="post">
+                    <input type="hidden" value=<%=usuario[i].id_usuario%> name="id">
+                    <input type="submit" value="Edit password">
+                </form></td>
+                <td><form action="/admin/excluirUsuario" method="post">
+                    <input type="hidden" value=<%=usuario[i].id_usuario%> name="id">
+                    <input type="submit" value="Del">
+                </form></td>
+            </tr>
+            <%
+        }
+        %>
+    </table>
+</body>
+</html>
